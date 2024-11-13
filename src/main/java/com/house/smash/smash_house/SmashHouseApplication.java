@@ -10,4 +10,6 @@ public class SmashHouseApplication {
 		SpringApplication.run(SmashHouseApplication.class, args);
 	}
 
+
+
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
+<head th:replace="~{base :: head}"></head>
+<body class="bg-light">
+<div th:replace="~{base :: navbar}"></div>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body text-center">
+          <h2 class="card-title mb-4">Bienvenido a Smash House Neiva</h2>
+          <p class="lead" th:text="'¡Hola, ' + ${user.nickname} + '!'">¡Hola!</p>
+
+          <div class="row mt-4">
+            <div class="col-md-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="fas fa-trophy text-warning"></i>
+                    Próximos Torneos
+                  </h5>
+                  <p class="card-text">Mantente al tanto de los próximos eventos.</p>
+                  <a href="#" class="btn btn-primary">Ver Torneos</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="fas fa-chart-line text-success"></i>
+                    Rankings
+                  </h5>
+                  <p class="card-text">Consulta el ranking actual de jugadores.</p>
+                  <a href="#" class="btn btn-primary">Ver Rankings</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="fas fa-users text-info"></i>
+                    Comunidad
+                  </h5>
+                  <p class="card-text">Conoce a los miembros de la comunidad.</p>
+                  <a href="#" class="btn btn-primary">Ver Comunidad</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <i class="fas fa-comments text-primary"></i>
+                    Foro
+                  </h5>
+                  <p class="card-text">Participa en las discusiones de la comunidad.</p>
+                  <a href="#" class="btn btn-primary">Ir al Foro</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{base :: scripts}"></div>
+</body>
+</html>

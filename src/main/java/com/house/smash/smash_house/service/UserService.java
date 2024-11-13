@@ -4,6 +4,7 @@ import com.house.smash.smash_house.model.User;
 import com.house.smash.smash_house.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,20 @@ public class UserService {
     // Buscar un usuario por nickname
     public Optional<User> getUserByNickname(String nickname) {
         return userRepository.findByNickname(nickname);
+    }
+
+    @Transactional
+    public void changePassword(String nickname, String currentPassword, String newPassword) {
+        User user = getUserByNickname(nickname)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+        // Verificar contraseña actual
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            throw new RuntimeException("La contraseña actual es incorrecta");
+        }
+
+        // Actualizar contraseña
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}">
+  <meta charset="UTF-8">
+  <title id="pageTitle">Registro</title>
+</head>
+<body>
+<div id="content" class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Registro de Usuario</h2>
+
+      <div th:if="${param.success}" class="alert alert-success">
+        Registro exitoso! Por favor inicia sesión.
+      </div>
+
+      <form th:action="@{/register}" th:object="${registerDTO}" method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" class="form-control" th:field="*{name}" id="name">
+          <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" th:field="*{email}" id="email">
+          <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="nickname" class="form-label">Nickname</label>
+          <input type="text" class="form-control" th:field="*{nickname}" id="nickname">
+          <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" th:field="*{password}" id="password">
+          <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+          <input type="password" class="form-control" th:field="*{confirmPassword}" id="confirmPassword">
+          <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <a th:href="@{/login.html}">¿Ya tienes una cuenta? Inicia sesión</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

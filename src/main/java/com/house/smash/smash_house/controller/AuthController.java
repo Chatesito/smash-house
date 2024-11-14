@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -47,33 +48,36 @@ public class AuthController {
     }
 
     // Endpoints
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("registerDTO", new RegisterDTO());
-        return "register";
+    @GetMapping("/auth")
+    public String showAuthForm(Model model) {
+        if (!model.containsAttribute("registerDTO")) {
+            model.addAttribute("registerDTO", new RegisterDTO());
+        }
+        return "auth";
     }
 
+    // Procesamiento del registro
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("registerDTO") RegisterDTO registerDTO,
                                BindingResult result,
-                               Model model) {
+                               RedirectAttributes redirectAttributes) {
 
         // Validar que las contraseñas coincidan
         if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             result.rejectValue("confirmPassword", "error.confirmPassword",
                     "Las contraseñas no coinciden");
-            return "register";
+            return "auth";
         }
 
         // Verificar si el nickname ya existe
         if (userService.getUserByNickname(registerDTO.getNickname()).isPresent()) {
             result.rejectValue("nickname", "error.nickname",
                     "Este nickname ya está en uso");
-            return "register";
+            return "auth"; // Cambiar a auth
         }
 
         if (result.hasErrors()) {
-            return "register";
+            return "auth";
         }
 
         try {
@@ -89,22 +93,17 @@ public class AuthController {
                     .orElseThrow(() -> new RuntimeException("Error: Rol USER no encontrado."));
 
             user.setRoles(new HashSet<>(Collections.singletonList(userRole)));
-
             userService.registerUser(user);
 
-            return "redirect:/login?success";
+            redirectAttributes.addFlashAttribute("registrationSuccess",
+                    "Registro exitoso. Por favor, inicia sesión.");
+            return "redirect:/auth";
         } catch (Exception e) {
-            // Log the error
             e.printStackTrace();
             result.rejectValue("global", "error.global",
                     "Error al registrar el usuario. Por favor, intente nuevamente.");
-            return "register";
+            return "auth";
         }
-    }
-
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "login";
     }
 
     // Endpoints REST para el JWT

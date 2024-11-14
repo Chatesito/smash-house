@@ -35,19 +35,20 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register", "/login", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/api/auth/**").permitAll() // Permitir endpoints de autenticación
-                        .requestMatchers("/api/profile").authenticated() // Endpoint obtener perfil
+                        .requestMatchers("/auth", "/register", "/css/**", "/js/**", "/images/**", "/img/**").permitAll()  // Añadido /auth y /img/**
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/profile").authenticated()
                         .requestMatchers("/profile", "/profile/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/auth")                    // Cambiado de /login a /auth
+                        .loginProcessingUrl("/login")          // Añadido para procesar el login
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/auth?logout")      // Cambiado de /login a /auth
                         .permitAll()
                 )
                 .sessionManagement(session -> session

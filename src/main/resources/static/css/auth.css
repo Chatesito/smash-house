@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-image: url(../img/sephiroth_BG.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.contenedor__todo {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+
+.caja__trasera {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 128, 255, 0.5);
+}
+
+.caja__trasera div {
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+.caja__trasera div p,
+.caja__trasera div button {
+    margin-top: 30px;
+}
+
+.caja__trasera div h3 {
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.caja__trasera button {
+    padding: 10px 40px;
+    border: 2px solid white;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;
+}
+
+.caja__trasera button:hover {
+    background: white;
+    color: #46a2fd;
+}
+
+/*Formularios*/
+.contenedor__ingresar-registrarse {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor__ingresar-registrarse form {
+    width: 100%;
+    padding: 80px 20px;
+    background: white;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.contenedor__ingresar-registrarse form h2 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #46a2fd;
+}
+
+.contenedor__ingresar-registrarse form input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: #f2f2f2;
+    font-size: 16px;
+    outline: none;
+}
+
+.contenedor__ingresar-registrarse form button {
+    padding: 10px 40px;
+    margin-top: 40px;
+    border: none;
+    font-size: 14px;
+    background: #46a2fd;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.formulario__ingresar {
+    opacity: 1;
+    display: block;
+}
+
+.formulario__registrarse {
+    display: none;
+}
+
+/* Alertas y mensajes de error/éxito */
+.alert {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.alert ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.alert li {
+    margin: 5px 0;
+}
+
+/* Diseño responsive */
+@media screen and (max-width: 850px) {
+    main {
+        margin-top: 20px;
+        min-height: 100vh; /* Evita el scroll innecesario */
+        display: flex;
+        align-items: center;
+    }
+
+    .contenedor__todo {
+        margin: 0 auto;
+        position: relative;
+        height: auto;
+    }
+
+    .caja__trasera {
+        max-width: 350px;
+        height: auto; /* Cambiado de 300px a auto */
+        flex-direction: column;
+        margin: auto;
+        padding: 20px;
+        position: relative;
+    }
+
+    .caja__trasera div {
+        margin: 10px 0;
+        position: relative;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .contenedor__ingresar-registrarse {
+        position: relative;
+        top: 20px;
+        left: 0;
+        width: 90%;
+        max-width: 350px;
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .contenedor__ingresar-registrarse form {
+        position: relative;
+        width: 100%;
+        padding: 40px 20px;
+        margin: 0 auto 20px;
+        display: none; /* Cambiado: todos los forms empiezan ocultos */
+    }
+
+    /* El formulario activo se muestra */
+    .contenedor__ingresar-registrarse form.active {
+        display: block;
+    }
+
+    /* Asegura que el primer formulario sea visible al inicio */
+    .formulario__ingresar {
+        display: block; /* Este formulario empieza visible */
+    }
+}
+
+/* Clases para manejar la visibilidad */
+.mobile-hidden {
+    display: none !important;
+}
+
+.mobile-visible {
+    display: block !important;
+}
+
+/* Mejoras visuales adicionales */
+.contenedor__ingresar-registrarse form button:hover {
+    background: #2d8aee;
+}
+
+.contenedor__ingresar-registrarse form input:focus {
+    background: #e8f0fe;
+}
+
+/* Animación para los formularios */
+.formulario__ingresar,
+.formulario__registrarse {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Estilo para inputs inválidos */
+.contenedor__ingresar-registrarse form input:invalid {
+    border-bottom: 2px solid #dc3545;
+}
+
+/* Estilo para inputs válidos */
+.contenedor__ingresar-registrarse form input:valid {
+    border-bottom: 2px solid #28a745;
+}
+
+/* Loading state para los botones */
+.contenedor__ingresar-registrarse form button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}

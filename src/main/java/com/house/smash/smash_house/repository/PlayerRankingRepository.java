@@ -8,4 +8,5 @@ import java.util.List;
 public interface PlayerRankingRepository extends JpaRepository<PlayerRanking, Long> {
 
     List<PlayerRanking> findAllByOrderByPositionAsc();
+    List<PlayerRanking> findAllByOrderByPointsDesc();
 }

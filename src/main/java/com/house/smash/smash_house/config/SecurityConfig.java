@@ -39,6 +39,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/profile").authenticated()
                         .requestMatchers("/profile", "/profile/**").authenticated()
+                        .requestMatchers("/ranking").authenticated()
+                        .requestMatchers("/player/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

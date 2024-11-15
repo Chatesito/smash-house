@@ -23,3 +23,18 @@ CREATE TABLE user_roles (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
+
+-- Tabla para el ranking de jugadores
+CREATE TABLE player_rankings (
+    id SERIAL PRIMARY KEY,
+    nickname VARCHAR(50) NOT NULL,
+    position INT NOT NULL,
+    points INT DEFAULT 0,
+    tournaments_played INT DEFAULT 0,
+    tournaments_won INT DEFAULT 0,
+    matches_won INT DEFAULT 0,
+    matches_lost INT DEFAULT 0,
+    main_character VARCHAR(50),
+    secondary_character VARCHAR(50),
+    achievements TEXT
+);

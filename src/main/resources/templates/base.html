@@ -62,6 +62,12 @@
                         <i class="fas fa-home me-1"></i> Inicio
                     </a>
                 </li>
+                <!-- Nuevo enlace para el ranking -->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" th:href="@{/ranking}">
+                        <i class="fas fa-trophy me-1"></i> Ranking
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

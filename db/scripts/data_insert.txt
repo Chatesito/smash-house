@@ -1,3 +1,35 @@
 -- Insertar roles básicos
 INSERT INTO roles (name) VALUES ('USER');
 INSERT INTO roles (name) VALUES ('ADMIN');
+
+-- Insertar lista de jugadores
+INSERT INTO player_rankings (
+    nickname, position, points, tournaments_played, tournaments_won, 
+    matches_won, matches_lost, main_character, secondary_character, achievements
+) VALUES 
+    ('Kal', 1, 850, 15, 4, 62, 28, 'Bayonetta', 'Pit', 'Campeón Regional Neiva 2023'),
+    ('CamiloBc', 2, 820, 14, 3, 58, 32, 'Ice Climbers', 'Ridley', 'Subcampeón Regional Neiva 2023'),
+    ('Charlie D', 3, 780, 13, 3, 55, 35, 'Mario', 'Bowser', 'Top 3 consistente en torneos locales'),
+    ('Chatesito', 4, 750, 12, 2, 48, 32, 'Mario', 'Incineroar', 'Ganador torneo mensual marzo 2024'),
+    ('Diablo', 5, 720, 14, 2, 52, 38, 'Steve', 'Kazuya', 'Mejor Steve de Neiva'),
+    ('DieGod', 6, 700, 13, 2, 50, 40, 'Kazuya', 'Lucario', 'Especialista en peleas cerradas'),
+    ('Yoga', 7, 680, 12, 1, 45, 35, 'Donkey Kong', 'Diddy Kong', 'Mejor jugador de DK de la región'),
+    ('DL_3', 8, 650, 11, 1, 42, 38, 'Min Min', 'Mario', 'Victoria destacada contra top 3'),
+    ('Pokehugo', 9, 620, 10, 1, 40, 35, 'Pac-man', 'Zero Suit Samus', 'Jugador más consistente'),
+    ('Brook', 10, 600, 12, 1, 43, 42, 'Donkey Kong', 'Peach', 'Mejor recuperación con DK'),
+    ('Engel', 11, 580, 11, 0, 38, 42, 'R.O.B', 'Ness', 'Especialista en lecturas'),
+    ('ICEMAN', 12, 550, 10, 0, 35, 40, 'Duck Hunt', 'Lucina', 'Mejor zoner de la región'),
+    ('J.M', 13, 520, 9, 0, 32, 38, 'Lucario', 'Greninja', 'Combo master'),
+    ('Jacov', 14, 500, 8, 0, 30, 35, 'Yoshi', 'Terry', 'Jugador más agresivo'),
+    ('Lanix', 15, 480, 9, 0, 28, 42, 'Kirby', 'Luigi', 'Rey de los edgeguards'),
+    ('Mady', 16, 450, 8, 0, 25, 35, 'Robin', 'Lucario', 'Mejor jugador femenino'),
+    ('Manu.j', 17, 420, 7, 0, 22, 38, 'Pit', 'Dark Pit', 'Mejor newcomer 2024'),
+    ('Night', 18, 400, 8, 0, 24, 36, 'Corrin', 'Byleth', 'Jugador más versátil'),
+    ('Novita', 19, 380, 7, 0, 20, 35, 'King Dedede', 'Piranha Plant', 'Especialista en heavies'),
+    ('Paolo', 20, 350, 6, 0, 18, 32, 'Joker', 'Kirby', 'Mejor adaptación mid-match'),
+    ('Pato', 21, 320, 6, 0, 15, 35, 'Inkling', 'Pikachu', 'Jugador más creativo'),
+    ('Pipe', 22, 300, 5, 0, 12, 28, 'Lucas', 'Hero', 'Mejor neutral game'),
+    ('Alden', 23, 280, 5, 0, 10, 25, 'Sora', 'King K. Rool', 'Promesa emergente'),
+    ('Tata', 24, 250, 4, 0, 8, 22, 'Lucas', 'Ness', 'Mejor jugador defensivo'),
+    ('Vanitas', 25, 220, 4, 0, 7, 23, 'Sora', 'Samus', 'Mejoramiento constante'),
+    ('Yeshua', 26, 200, 3, 0, 5, 15, 'Zero Suit Samus', 'Dark Samus', 'Nuevo talento');

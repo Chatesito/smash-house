@@ -34,12 +34,20 @@ public class AdminRankingController {
                                @ModelAttribute PlayerRankingUpdateDTO updateDTO,
                                RedirectAttributes redirectAttributes) {
         try {
+            // Validar que los torneos ganados no excedan los jugados
+            if (updateDTO.getTournamentsWon() > updateDTO.getTournamentsPlayed()) {
+                redirectAttributes.addFlashAttribute("error",
+                        "Los torneos ganados no pueden ser más que los torneos jugados");
+                return "redirect:/admin/player/" + id;
+            }
+
             rankingService.updatePlayerStats(id, updateDTO);
             redirectAttributes.addFlashAttribute("success", "Jugador actualizado correctamente");
+            return "redirect:/ranking";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error al actualizar el jugador");
+            return "redirect:/admin/player/" + id;
         }
-        return "redirect:/ranking";
     }
 
     @GetMapping("/player/new")

@@ -69,15 +69,19 @@
                                       th:text="${player.achievements}"></textarea>
                         </div>
 
-                        <!-- Personajes (No editables) -->
+                        <!-- Personajes -->
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <h6>Personaje Principal</h6>
-                                <span class="badge bg-primary" th:text="${player.mainCharacter}"></span>
+                                <label class="form-label">Personaje Principal</label>
+                                <input type="text" class="form-control"
+                                       name="mainCharacter"
+                                       th:value="${player.mainCharacter}" required>
                             </div>
                             <div class="col-md-6">
-                                <h6>Personaje Secundario</h6>
-                                <span class="badge bg-secondary" th:text="${player.secondaryCharacter}"></span>
+                                <label class="form-label">Personaje Secundario</label>
+                                <input type="text" class="form-control"
+                                       name="secondaryCharacter"
+                                       th:value="${player.secondaryCharacter}">
                             </div>
                         </div>
 

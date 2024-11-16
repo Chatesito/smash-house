@@ -9,5 +9,7 @@ public class PlayerRankingUpdateDTO {
     private Integer tournamentsWon;
     private Integer matchesWon;
     private Integer matchesLost;
+    private String mainCharacter;
+    private String secondaryCharacter;
     private String achievements;
 }

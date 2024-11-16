@@ -32,6 +32,8 @@ public class PlayerRankingService {
         player.setTournamentsWon(updateDTO.getTournamentsWon());
         player.setMatchesWon(updateDTO.getMatchesWon());
         player.setMatchesLost(updateDTO.getMatchesLost());
+        player.setMainCharacter(updateDTO.getMainCharacter());
+        player.setSecondaryCharacter(updateDTO.getSecondaryCharacter());
         player.setAchievements(updateDTO.getAchievements());
 
         // Recalcular puntos

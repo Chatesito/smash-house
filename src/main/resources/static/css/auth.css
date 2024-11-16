@@ -173,7 +173,7 @@ main {
 
     .caja__trasera {
         max-width: 350px;
-        height: auto; /* Cambiado de 300px a auto */
+        height: auto;
         flex-direction: column;
         margin: auto;
         padding: 20px;
@@ -202,7 +202,7 @@ main {
         width: 100%;
         padding: 40px 20px;
         margin: 0 auto 20px;
-        display: none; /* Cambiado: todos los forms empiezan ocultos */
+        display: none; /* Todos los forms empiezan ocultos */
     }
 
     /* El formulario activo se muestra */
@@ -225,7 +225,7 @@ main {
     display: block !important;
 }
 
-/* Mejoras visuales adicionales */
+/* Mejoras adicionales */
 .contenedor__ingresar-registrarse form button:hover {
     background: #2d8aee;
 }

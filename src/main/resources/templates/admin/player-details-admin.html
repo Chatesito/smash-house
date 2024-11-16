@@ -35,13 +35,13 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <label class="form-label">Torneos Jugados</label>
-                                <input type="number" class="form-control"
+                                <input type="number" min="0" class="form-control"
                                        name="tournamentsPlayed"
                                        th:value="${player.tournamentsPlayed}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Torneos Ganados</label>
-                                <input type="number" class="form-control"
+                                <input type="number" min="0" class="form-control"
                                        name="tournamentsWon"
                                        th:value="${player.tournamentsWon}" required>
                             </div>
@@ -50,13 +50,13 @@
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <label class="form-label">Partidas Ganadas</label>
-                                <input type="number" class="form-control"
+                                <input type="number" min="0" class="form-control"
                                        name="matchesWon"
                                        th:value="${player.matchesWon}" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Partidas Perdidas</label>
-                                <input type="number" class="form-control"
+                                <input type="number" min="0" class="form-control"
                                        name="matchesLost"
                                        th:value="${player.matchesLost}" required>
                             </div>
@@ -90,12 +90,38 @@
                             <a href="/ranking" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>Volver
                             </a>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <i class="fas fa-trash me-2"></i>Eliminar Jugador
+                            </button>
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save me-2"></i>Guardar Cambios
                             </button>
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar a "<span th:text="${player.nickname}"></span>" del ranking?</p>
+                <p class="text-danger"><strong>Esta acción no se puede deshacer.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form th:action="@{'/admin/player/' + ${player.id} + '/delete'}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash me-2"></i>Eliminar
+                    </button>
+                </form>
             </div>
         </div>
     </div>

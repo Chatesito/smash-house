@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity6">
+<head th:replace="~{base :: head}"></head>
+<body class="bg-light">
+<div th:replace="~{base :: navbar}"></div>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">
+            <i class="fas fa-plus-circle me-2"></i>
+            Añadir Nuevo Jugador
+          </h3>
+        </div>
+        <div class="card-body">
+          <form th:action="@{/admin/player/create}" method="POST">
+            <!-- Nickname -->
+            <div class="mb-4">
+              <label class="form-label">Nickname</label>
+              <input type="text"
+                     class="form-control"
+                     name="nickname"
+                     required>
+            </div>
+
+            <!-- Personajes -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Personaje Principal</label>
+                <input type="text"
+                       class="form-control"
+                       name="mainCharacter"
+                       required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Personaje Secundario</label>
+                <input type="text"
+                       class="form-control"
+                       name="secondaryCharacter">
+              </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between">
+              <a href="/ranking" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Cancelar
+              </a>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save me-2"></i>Guardar Jugador
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{base :: scripts}"></div>
+</body>
+</html>

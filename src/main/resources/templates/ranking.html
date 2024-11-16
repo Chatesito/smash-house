@@ -9,24 +9,29 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card shadow">
+                <!-- Mensajes de éxito/error al eliminar jugadores -->
+                <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span th:text="${success}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <span th:text="${error}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
                 <div class="card-header bg-primary text-white">
                     <h3 class="mb-0">
                         <i class="fas fa-trophy me-2"></i>
                         Ranking de Jugadores - Smash House Neiva
                     </h3>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')"
+                       th:href="@{/admin/player/new}"
+                       class="btn btn-warning">
+                        <i class="fas fa-plus me-1"></i> Añadir Jugador
+                    </a>
                 </div>
                 <div>
-                    <p>Roles actuales:</p>
-                    <span th:text="${#authentication.principal}"></span>
-                    <br/>
-                    <p>Autoridades:</p>
-                    <span th:each="auth : ${#authentication.authorities}">
-                        <span th:text="${auth}"></span><br/>
-                    </span>
-                    <br/>
-                    <p>Es Admin?:</p>
-                    <span th:text="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"></span>
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">

@@ -1,6 +1,7 @@
 package com.house.smash.smash_house.service;
 
 import com.house.smash.smash_house.model.PlayerRanking;
+import com.house.smash.smash_house.model.dto.PlayerRankingCreateDTO;
 import com.house.smash.smash_house.model.dto.PlayerRankingUpdateDTO;
 import com.house.smash.smash_house.repository.PlayerRankingRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,5 +52,31 @@ public class PlayerRankingService {
             players.get(i).setPosition(i + 1);
             playerRankingRepository.save(players.get(i));
         }
+    }
+
+    @Transactional
+    public PlayerRanking createPlayer(PlayerRankingCreateDTO createDTO) {
+        PlayerRanking player = new PlayerRanking();
+        player.setNickname(createDTO.getNickname());
+        player.setMainCharacter(createDTO.getMainCharacter());
+        player.setSecondaryCharacter(createDTO.getSecondaryCharacter());
+
+        // Valores iniciales
+        player.setPoints(0);
+        player.setPosition((int) (playerRankingRepository.count() + 1)); // última posición
+        player.setTournamentsPlayed(0);
+        player.setTournamentsWon(0);
+        player.setMatchesWon(0);
+        player.setMatchesLost(0);
+
+        return playerRankingRepository.save(player);
+    }
+
+    @Transactional
+    public void deletePlayer(Long id) {
+        PlayerRanking player = getPlayerById(id);
+        playerRankingRepository.delete(player);
+        // Actualizar posiciones después de eliminar
+        updatePositions();
     }
 }
